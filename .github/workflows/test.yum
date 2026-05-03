@@ -1,0 +1,27 @@
+# .github/workflows/update-hbb-common.yml
+name: Update hbb_common
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Remove old submodule
+        run: |
+          git rm -f libs/hbb_common
+          rm -rf .git/modules/libs/hbb_common
+          
+      - name: Clone your hbb_common
+        run: |
+          git clone https://github.com/laiyouxing/hbb_common.git libs/hbb_common
+          rm -rf libs/hbb_common/.git
+          
+      - name: Commit and push
+        run: |
+          git add libs/hbb_common
+          git commit -m "Update hbb_common to custom fork"
+          git push
