@@ -31,7 +31,7 @@ jobs:
           targets: x86_64-pc-windows-msvc
 
       - name: Build rustdesk
-        run: python3 build.py --portable --hwcodec --flutter --vram
+        run: python3 build.py --portable --flutter
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
